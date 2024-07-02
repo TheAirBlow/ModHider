@@ -13,6 +13,6 @@
     "credits": "",
     "logoFile": "assets/modhider/logo.png",
     "screenshots": [],
-    "dependencies": []
+    "dependencies": ["mixinbooter"]
   }
 ]

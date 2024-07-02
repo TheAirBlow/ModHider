@@ -54,7 +54,10 @@ minecraft {
     }
 }
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
+sourceSets.main {
+    refMap = "mixin.refmap.json";
+    resources { srcDir 'src/generated/resources' }
+}
 
 repositories {
     maven {

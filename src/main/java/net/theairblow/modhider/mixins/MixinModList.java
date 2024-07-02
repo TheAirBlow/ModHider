@@ -1,8 +1,8 @@
-package net.theairblow.modhider;
+package net.theairblow.modhider.mixins;
 
-import com.google.common.collect.Maps;
 import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.network.handshake.FMLHandshakeMessage;
+import net.theairblow.modhider.Configuration;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,16 +12,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 import java.util.Map;
 
-@Mixin(FMLHandshakeMessage.ModList.class)
+@Mixin(value = FMLHandshakeMessage.ModList.class, remap = false)
 public abstract class MixinModList {
     @Shadow
-    private Map<String, String> modTags = Maps.newHashMap();
+    private Map<String, String> modTags;
 
-    @Inject(method = "<init>(Ljava/util/List;)V", at = @At("RETURN"))
-    public void create(List<ModContainer> modList, CallbackInfo ci) {
-        for (ModContainer mod : modList) {
-            if (Configuration.hidden.contains(mod.getModId())) continue;
-            modTags.put(mod.getModId(), mod.getVersion());
-        }
+    @Inject(method = "<init>(Ljava/util/List;)V", at = @At("TAIL"))
+    public void init(List<ModContainer> modList, CallbackInfo ci) {
+        for (String id : Configuration.hidden) modTags.remove(id);
     }
 }
