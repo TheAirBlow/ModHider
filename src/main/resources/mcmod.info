@@ -1,0 +1,18 @@
+[
+  {
+    "modid": "modhider",
+    "name": "ModHider",
+    "description": "Hides mods from the FML handshake",
+    "url": "https://github.com/TheAirBlow/ModHider/",
+    "version": "1.0.0",
+    "mcversion": "1.12.2",
+    "updateUrl": "",
+    "authorList": [
+      "TheAirBlow"
+    ],
+    "credits": "",
+    "logoFile": "assets/modhider/logo.png",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
